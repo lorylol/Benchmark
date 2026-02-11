@@ -1,0 +1,82 @@
+var creativeSize = `${template.width}x${template.height}`; // Set the width and height of the ad.
+var devDynamicContent = {}; // Variable for studio invocation code.
+function exitCall() {
+  Enabler.exitOverride("MainClick", defaultValues.landingPage);
+}
+var videoCuePoint = [
+  //"cuePoint:funcName" ex. "1:firstAninmation" please do not included the parenthesis after the function name.
+]
+function initDynamic() {
+  if (checkEnvironment() === 'tools') {
+    for (var i=0;i<Object.keys(defaultValues).length;i++) {
+      Object.keys(defaultValues)[i];
+    }
+  } else {
+    // paste studio invocation code here, and delete the devDynamicContent declaration as it is already declared outside this function.
+    Enabler.setProfileId(10956770);
+
+    devDynamicContent.AT_Always_On_Inspiration_Winter_Sheet1 = [{}];
+    devDynamicContent.AT_Always_On_Inspiration_Winter_Sheet1[0]._id = 0;
+    devDynamicContent.AT_Always_On_Inspiration_Winter_Sheet1[0].id = "015d4b8a-252b-4dee-a0a5-e801b147de6f";
+    devDynamicContent.AT_Always_On_Inspiration_Winter_Sheet1[0].Reporting_Label = "845e571a-5557-4203-8fe0-ac9ed5772157-d1e11368-fdf7-4ce8-92f3-42440dcdde2b-662323c0-9612-44b6-a718-5e52214adee2-e5y4dcmi1O-aa19bbd3-6e92-4b8d-afe1-14b2a27f314e-e476253cb044527c58d14401a1c9cc19f6af542ea4dbcfe1ac82eda45bc8028e";
+    devDynamicContent.AT_Always_On_Inspiration_Winter_Sheet1[0].Variant_name = "Thailand - LP";
+    devDynamicContent.AT_Always_On_Inspiration_Winter_Sheet1[0].Active = true;
+    devDynamicContent.AT_Always_On_Inspiration_Winter_Sheet1[0].logo = {};
+    devDynamicContent.AT_Always_On_Inspiration_Winter_Sheet1[0].logo.Url = "https://dyle7zu5kwqf5.cloudfront.net/65784f95-080c-4d5d-a5a3-9a70efbd4d05/logo.png";
+    devDynamicContent.AT_Always_On_Inspiration_Winter_Sheet1[0].logo2 = {};
+    devDynamicContent.AT_Always_On_Inspiration_Winter_Sheet1[0].logo2.Url = "https://dyle7zu5kwqf5.cloudfront.net/65784f95-080c-4d5d-a5a3-9a70efbd4d05/logo2.png";
+    devDynamicContent.AT_Always_On_Inspiration_Winter_Sheet1[0].logo3 = {};
+    devDynamicContent.AT_Always_On_Inspiration_Winter_Sheet1[0].logo3.Url = "https://app-direct.smartly.io/matrix/_blank.png";
+    devDynamicContent.AT_Always_On_Inspiration_Winter_Sheet1[0].ctaText = "Jetzt buchen";
+    devDynamicContent.AT_Always_On_Inspiration_Winter_Sheet1[0].subLogo = {};
+    devDynamicContent.AT_Always_On_Inspiration_Winter_Sheet1[0].subLogo.Url = "https://app-direct.smartly.io/matrix/_blank.png";
+    devDynamicContent.AT_Always_On_Inspiration_Winter_Sheet1[0].trigger = "FRAME 1 AND 2 WITH CTA";
+    devDynamicContent.AT_Always_On_Inspiration_Winter_Sheet1[0].fontName = "Ambit";
+    devDynamicContent.AT_Always_On_Inspiration_Winter_Sheet1[0].baseImage = {};
+    devDynamicContent.AT_Always_On_Inspiration_Winter_Sheet1[0].baseImage.Url = "https://app.smartly.io/warren/images/2aa61d9c-1682-4bb8-82b4-a54851b683dc/blob?Thailand_AdobeStock_302733749.jpg";
+    devDynamicContent.AT_Always_On_Inspiration_Winter_Sheet1[0].cssAttrib = "\/* CSS STYLE *\/";
+    devDynamicContent.AT_Always_On_Inspiration_Winter_Sheet1[0].ctaColor1 = "#d40e14";
+    devDynamicContent.AT_Always_On_Inspiration_Winter_Sheet1[0].baseImage2 = {};
+    devDynamicContent.AT_Always_On_Inspiration_Winter_Sheet1[0].baseImage2.Url = "https://app-direct.smartly.io/matrix/_blank.png";
+    devDynamicContent.AT_Always_On_Inspiration_Winter_Sheet1[0].baseImage3 = {};
+    devDynamicContent.AT_Always_On_Inspiration_Winter_Sheet1[0].baseImage3.Url = "https://dyle7zu5kwqf5.cloudfront.net/65784f95-080c-4d5d-a5a3-9a70efbd4d05/blank.png";
+    devDynamicContent.AT_Always_On_Inspiration_Winter_Sheet1[0].baseImage4 = {};
+    devDynamicContent.AT_Always_On_Inspiration_Winter_Sheet1[0].baseImage4.Url = "https://dyle7zu5kwqf5.cloudfront.net/65784f95-080c-4d5d-a5a3-9a70efbd4d05/blank.png";
+    devDynamicContent.AT_Always_On_Inspiration_Winter_Sheet1[0].baseImage5 = {};
+    devDynamicContent.AT_Always_On_Inspiration_Winter_Sheet1[0].baseImage5.Url = "https://dyle7zu5kwqf5.cloudfront.net/65784f95-080c-4d5d-a5a3-9a70efbd4d05/skyblue.png";
+    devDynamicContent.AT_Always_On_Inspiration_Winter_Sheet1[0].baseImage6 = {};
+    devDynamicContent.AT_Always_On_Inspiration_Winter_Sheet1[0].baseImage6.Url = "https://dyle7zu5kwqf5.cloudfront.net/65784f95-080c-4d5d-a5a3-9a70efbd4d05/wave.png";
+    devDynamicContent.AT_Always_On_Inspiration_Winter_Sheet1[0].fontColor1 = "#092A5E";
+    devDynamicContent.AT_Always_On_Inspiration_Winter_Sheet1[0].fontColor2 = "#092A5E";
+    devDynamicContent.AT_Always_On_Inspiration_Winter_Sheet1[0].frame3Image = {};
+    devDynamicContent.AT_Always_On_Inspiration_Winter_Sheet1[0].frame3Image.Url = "https://app.smartly.io/warren/images/00c67063-5359-45e5-9432-d014a07306a5/variations/43f9214c-2ca0-40f0-8050-4c0535ddfbec/blob?icon-shield_57x57_1.png";
+    devDynamicContent.AT_Always_On_Inspiration_Winter_Sheet1[0].frame4Image = {};
+    devDynamicContent.AT_Always_On_Inspiration_Winter_Sheet1[0].frame4Image.Url = "https://app-direct.smartly.io/matrix/_blank.png";
+    devDynamicContent.AT_Always_On_Inspiration_Winter_Sheet1[0].landingPage = {};
+    devDynamicContent.AT_Always_On_Inspiration_Winter_Sheet1[0].landingPage.Url = "https://www.tui.at/pauschalreisen/thailand/?utm_source=AO&utm_medium=display&utm_campaign=AO_Dynamic_Creatives_Inspiration_Winter&utm_content=thailand_winter";
+    devDynamicContent.AT_Always_On_Inspiration_Winter_Sheet1[0].CreativeName = "Thailand - LP_300x50";
+    devDynamicContent.AT_Always_On_Inspiration_Winter_Sheet1[0].frame3Image2 = {};
+    devDynamicContent.AT_Always_On_Inspiration_Winter_Sheet1[0].frame3Image2.Url = "https://app.smartly.io/warren/images/0435171c-9329-49b7-8c32-146b5fb17d5b/variations/591fb5c9-9639-4eca-a177-2d3882a4ace4/blob?calendar%202_57x57_1.png";
+    devDynamicContent.AT_Always_On_Inspiration_Winter_Sheet1[0].frame3Image3 = {};
+    devDynamicContent.AT_Always_On_Inspiration_Winter_Sheet1[0].frame3Image3.Url = "https://app.smartly.io/warren/images/93d0faa5-9b28-4440-b016-428bbdc3d144/variations/8bfcad46-9dde-4018-a401-5044f37439a9/blob?icon-price_57x57_1.png";
+    devDynamicContent.AT_Always_On_Inspiration_Winter_Sheet1[0].locationName = "";
+    devDynamicContent.AT_Always_On_Inspiration_Winter_Sheet1[0].URL_Parameter = "";
+    devDynamicContent.AT_Always_On_Inspiration_Winter_Sheet1[0].customVariable = "1";
+    devDynamicContent.AT_Always_On_Inspiration_Winter_Sheet1[0].frame1Headline = "Winterurlaub f&uuml;r die Seele in Thailand.";
+    devDynamicContent.AT_Always_On_Inspiration_Winter_Sheet1[0].frame2Headline = "Traumurlaub f&uuml;r Entdecker und Genie&szlig;er.";
+    devDynamicContent.AT_Always_On_Inspiration_Winter_Sheet1[0].frame3Headline = "SICHER BUCHEN &amp; SORGLOS REISEN";
+    devDynamicContent.AT_Always_On_Inspiration_Winter_Sheet1[0].frame4Headline = "";
+    devDynamicContent.AT_Always_On_Inspiration_Winter_Sheet1[0].customVariable2 = "0";
+    devDynamicContent.AT_Always_On_Inspiration_Winter_Sheet1[0].frame3Headline2 = "FLEXIBEL BLEIBEN MIT FLEX TARIF";
+    devDynamicContent.AT_Always_On_Inspiration_Winter_Sheet1[0].frame3Headline3 = "BESTPREIS-GARANTIE";
+    Enabler.setDevDynamicContent(devDynamicContent);
+    Adlib.assignInvocationCode(); // DO NOT DELETE THIS CODE, This will automatically assign invocation code to defaultValues
+  }
+}
+function populate() {
+  //Adlib.fpsSettings(60); // uncomment this if you want to change the FPS used in the creative          
+  Adlib.populateElements(); // DO NOT DELETE THIS. automatically assign the defaultValues to the elements within the ad.
+  /*****************************************
+  If you need to manually assign a defaultValue to a style of an element, add it below.
+  *****************************************/
+};

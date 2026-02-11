@@ -1,0 +1,368 @@
+<!doctype html>
+<html lang="it">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>BenchLab · Benchmark CPU & GPU</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#benchmark">Salta ai benchmark</a>
+    <header class="hero">
+      <nav class="nav">
+        <div class="brand">BenchLab</div>
+        <div class="nav-links">
+          <a href="#benchmark" data-tab="cpu">CPU</a>
+          <a href="#benchmark" data-tab="gpu">GPU</a>
+          <a href="#insights">Panoramica</a>
+          <a href="#personal" data-protected="true">Spazio personale</a>
+          <a href="#faq">FAQ</a>
+        </div>
+        <div class="nav-actions">
+          <button id="cpuDetailBtn" class="btn ghost small" type="button">Dettagli CPU</button>
+          <button id="userBadge" class="user-badge" type="button">
+            <span class="user-icon">👤</span>
+            <span id="userBadgeText">Utente non registrato</span>
+          </button>
+          <div id="userMenu" class="user-menu hidden" role="menu">
+            <p id="userMenuName" class="user-menu-name"></p>
+            <button id="logoutBtn" class="btn ghost small" type="button">Esci</button>
+          </div>
+          <button id="themeToggle" class="btn ghost">Tema</button>
+        </div>
+      </nav>
+
+      <div class="hero-content">
+        <p class="eyebrow">Benchmark aggiornati e facili da leggere</p>
+        <h1>Il confronto definitivo di CPU e GPU in commercio</h1>
+        <p class="lead">
+          Dati reali, filtri rapidi e una vista compatta per confrontare CPU e GPU.
+        </p>
+        <div class="cta-row">
+          <button class="btn primary" data-scroll="#benchmark" data-tab="cpu">Esplora CPU</button>
+          <button class="btn" data-scroll="#benchmark" data-tab="gpu">Esplora GPU</button>
+        </div>
+      </div>
+
+      <div class="quick-actions">
+        <a class="quick-card" href="https://cpu.userbenchmark.com/Software" target="_blank" rel="noreferrer">
+          <h3>Testa la tua CPU</h3>
+          <p>Scopri in meno di un minuto le performance reali.</p>
+        </a>
+        <a class="quick-card" href="https://www.userbenchmark.com/EFps/Compare" target="_blank" rel="noreferrer">
+          <h3>Confronta Gaming FPS</h3>
+          <p>Valuta rapidamente le performance in gioco.</p>
+        </a>
+        <a class="quick-card" href="https://www.userbenchmark.com/PCBuilder" target="_blank" rel="noreferrer">
+          <h3>Avvia un PC Build</h3>
+          <p>Combina componenti e crea la tua build ideale.</p>
+        </a>
+      </div>
+      <div class="hero-glow"></div>
+    </header>
+
+    <main>
+      <div class="quick-nav" aria-label="Navigazione rapida">
+        <button class="quick-nav-btn" data-scroll="#benchmark" data-tab="cpu" type="button">Benchmark</button>
+        <button class="quick-nav-btn" data-scroll="#calculator" type="button">Calcolatore</button>
+        <button class="quick-nav-btn" data-scroll="#faq" type="button">FAQ</button>
+      </div>
+      <section class="section" id="benchmark">
+        <div class="section-header">
+          <div>
+            <h2>Benchmark</h2>
+            <p>Seleziona CPU o GPU per vedere i modelli disponibili.</p>
+          </div>
+          <div class="tabs" role="tablist">
+            <button class="tab active" type="button" data-tab="cpu" role="tab" aria-selected="true">CPU</button>
+            <button class="tab" type="button" data-tab="gpu" role="tab" aria-selected="false">GPU</button>
+          </div>
+        </div>
+        <div class="tab-panels">
+          <div class="tab-panel active" data-panel="cpu">
+            <div class="filters">
+              <input id="cpuSearch" class="input" placeholder="Cerca CPU (es. Ryzen, i7...)" />
+              <select id="cpuBrand" class="input">
+                <option value="all">Tutte le marche</option>
+                <option value="amd">AMD</option>
+                <option value="intel">Intel</option>
+              </select>
+              <select id="cpuSort" class="input">
+                <option value="rank">Ordine benchmark</option>
+                <option value="score">Punteggio</option>
+                <option value="value">Valore</option>
+                <option value="release">Data uscita</option>
+                <option value="name">Nome A-Z</option>
+              </select>
+            </div>
+            <div class="filter-meta">
+              <span id="cpuVisibleCount" class="muted">0 risultati</span>
+              <div class="view-toggle" role="group" aria-label="Vista CPU">
+                <button id="cpuViewGrid" class="btn ghost small active" type="button">Griglia</button>
+                <button id="cpuViewTable" class="btn ghost small" type="button">Tabella</button>
+              </div>
+              <button id="cpuReset" class="btn ghost small" type="button">Reset filtri</button>
+            </div>
+            <p class="muted">Controlla i valori di mercato di ogni processore aggiornato ad oggi.</p>
+            <div id="cpuGrid" class="grid"></div>
+            <button id="cpuLoadMore" class="btn ghost small load-more" type="button">Carica altri</button>
+            <div id="cpuTable" class="table-wrap hidden"></div>
+          </div>
+
+          <div class="tab-panel" data-panel="gpu">
+            <div class="filters">
+              <input id="gpuSearch" class="input" placeholder="Cerca GPU (es. RTX, RX...)" />
+              <select id="gpuBrand" class="input">
+                <option value="all">Tutte le marche</option>
+                <option value="nvidia">NVIDIA</option>
+                <option value="amd">AMD</option>
+                <option value="intel">Intel</option>
+              </select>
+              <select id="gpuSort" class="input">
+                <option value="rank">Ordine benchmark</option>
+                <option value="score">Punteggio</option>
+                <option value="value">Valore</option>
+                <option value="name">Nome A-Z</option>
+              </select>
+            </div>
+            <div class="filter-meta">
+              <span id="gpuVisibleCount" class="muted">0 risultati</span>
+              <div class="view-toggle" role="group" aria-label="Vista GPU">
+                <button id="gpuViewGrid" class="btn ghost small active" type="button">Griglia</button>
+                <button id="gpuViewTable" class="btn ghost small" type="button">Tabella</button>
+              </div>
+              <button id="gpuReset" class="btn ghost small" type="button">Reset filtri</button>
+            </div>
+            <div id="gpuGrid" class="grid"></div>
+            <button id="gpuLoadMore" class="btn ghost small load-more" type="button">Carica altri</button>
+            <div id="gpuTable" class="table-wrap hidden"></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="insights">
+        <div class="section-header">
+          <div>
+            <h2>Panoramica rapida</h2>
+            <p>Una sintesi per individuare velocemente le opzioni più forti.</p>
+          </div>
+        </div>
+        <div class="insights-grid">
+          <article class="insight-card">
+            <h3>Migliori CPU per categoria</h3>
+            <div id="bestCpuGrid" class="stack"></div>
+          </article>
+          <article class="insight-card">
+            <h3>Migliori GPU per categoria</h3>
+            <div id="bestGpuGrid" class="stack"></div>
+          </article>
+          <article class="insight-card">
+            <h3>Top del mese</h3>
+            <ul id="topMonthList" class="list"></ul>
+          </article>
+        </div>
+        <div class="insights-grid">
+          <article class="insight-card">
+            <h3>Come leggere i dati</h3>
+            <p>Confronta la posizione in classifica, il valore mercato e la valutazione complessiva. Usa i filtri per restringere il campo e individuare i modelli più equilibrati.</p>
+          </article>
+          <article class="insight-card">
+            <h3>Glossario rapido</h3>
+            <ul class="list">
+              <li><strong>Core</strong> · Numero di unità di calcolo della CPU.</li>
+              <li><strong>Boost</strong> · Frequenza massima raggiungibile.</li>
+              <li><strong>TDP</strong> · Indicazione del consumo energetico.</li>
+              <li><strong>VRAM</strong> · Memoria dedicata della GPU.</li>
+              <li><strong>Rank</strong> · Posizione in classifica (più basso è meglio).</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <section class="section" id="calculator">
+        <div class="section-header">
+          <div>
+            <h2>Calcolatore di potenza</h2>
+            <p>Unisci una CPU e una GPU per stimare la potenza complessiva.</p>
+          </div>
+        </div>
+        <div class="calculator">
+          <div class="calculator-controls">
+            <label>
+              Seleziona CPU
+              <input id="calcCpuInput" class="input" list="calcCpuList" placeholder="Cerca e seleziona CPU" />
+              <datalist id="calcCpuList"></datalist>
+            </label>
+            <label>
+              Seleziona GPU
+              <input id="calcGpuInput" class="input" list="calcGpuList" placeholder="Cerca e seleziona GPU" />
+              <datalist id="calcGpuList"></datalist>
+            </label>
+            <label>
+              Profilo d’uso
+              <select id="calcProfile" class="input">
+                <option value="balanced">Bilanciato</option>
+                <option value="gaming">Gaming (peso GPU)</option>
+                <option value="creator">Creator (peso CPU)</option>
+              </select>
+            </label>
+          </div>
+          <div class="calculator-result">
+            <div>
+              <p class="muted">Punteggio combinato</p>
+              <h3 id="calcScore">-</h3>
+            </div>
+            <div>
+              <p class="muted">Valore combinato</p>
+              <h4 id="calcValue">-</h4>
+            </div>
+            <div class="calc-notes" id="calcNotes">Seleziona CPU e GPU per ottenere il risultato.</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="personal">
+        <div class="section-header">
+          <div>
+            <h2>Spazio personale</h2>
+            <p>Salva i componenti che ti interessano per ritrovarli rapidamente.</p>
+          </div>
+        </div>
+        <div class="compare-panel">
+          <h3>Confronto rapido</h3>
+          <div id="compareEmpty" class="muted">Seleziona fino a 3 componenti salvati per confrontarli.</div>
+          <div id="compareGrid" class="compare-grid"></div>
+        </div>
+        <div id="savedEmpty" class="muted">Nessun componente salvato al momento.</div>
+        <div id="savedGrid" class="grid"></div>
+        <button id="savedLoadMore" class="btn ghost small load-more" type="button">Carica altri</button>
+      </section>
+
+      <section class="section" id="faq">
+        <div class="section-header">
+          <div>
+            <h2>FAQ rapide</h2>
+            <p>Spiegazioni sintetiche per orientarti subito.</p>
+          </div>
+        </div>
+        <div class="faq-grid">
+          <article class="faq-card">
+            <h3>Come si misura il valore?</h3>
+            <p>Combina performance e prezzo per capire quanto conviene un modello.</p>
+            <a href="https://www.userbenchmark.com/Faq/What-is-the-Processor-value-for-money-rating/48" target="_blank" rel="noreferrer">Approfondisci</a>
+          </article>
+          <article class="faq-card">
+            <h3>Cos'è l'overclock?</h3>
+            <p>È una tecnica per aumentare le prestazioni oltre le impostazioni standard.</p>
+            <a href="https://cpu.userbenchmark.com/Faq/What-is-overclocking/54" target="_blank" rel="noreferrer">Approfondisci</a>
+          </article>
+          <article class="faq-card">
+            <h3>Come scegliere una GPU?</h3>
+            <p>Valuta la risoluzione di gioco e la fascia di prezzo più adatta.</p>
+            <a href="https://gpu.userbenchmark.com/" target="_blank" rel="noreferrer">Approfondisci</a>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div>
+        <p class="muted">I dati sono caricati da file JSON generati dallo script di scraping.</p>
+      </div>
+      <div class="muted">© 2026 BenchLab</div>
+    </footer>
+
+    <button id="floatingBadge" class="floating-badge hidden" type="button">
+      <span class="user-icon">👤</span>
+      <span>Utente non registrato</span>
+    </button>
+
+    <button id="backToTop" class="back-to-top" type="button" aria-label="Torna su">↑</button>
+
+    <div id="registerOverlay" class="overlay hidden" role="dialog" aria-modal="true" aria-labelledby="registerTitle">
+      <div class="modal">
+        <button id="registerClose" class="icon-btn" type="button" aria-label="Chiudi">×</button>
+        <p class="eyebrow">Benvenuto su BenchLab</p>
+        <h2 id="registerTitle">Vuoi creare un account?</h2>
+        <p class="lead">
+          È facoltativo: puoi continuare senza registrarti. Con l'account salvi le preferenze
+          e resti sincronizzato ai prossimi accessi.
+        </p>
+        <div class="modal-actions">
+          <button id="registerStart" class="btn primary" type="button">Crea account</button>
+          <button id="registerSkip" class="btn ghost" type="button">Non ora</button>
+          <button id="registerHaveAccount" class="btn ghost" type="button">Ho già un account</button>
+        </div>
+        <form id="registerForm" class="register-form hidden">
+          <label>
+            Nome
+            <input id="registerName" class="input" required placeholder="Il tuo nome" />
+          </label>
+          <label>
+            Email
+            <input id="registerEmail" class="input" type="email" required placeholder="nome@email.it" />
+          </label>
+          <button id="registerSubmit" class="btn primary" type="submit">Completa registrazione</button>
+          <p class="muted">Nessuna condivisione: i dati restano solo nel browser.</p>
+        </form>
+      </div>
+    </div>
+
+    <div id="cpuDetailOverlay" class="overlay hidden" role="dialog" aria-modal="true" aria-labelledby="cpuDetailTitle">
+      <div class="modal detail-modal">
+        <button id="cpuDetailClose" class="icon-btn" type="button" aria-label="Chiudi">×</button>
+        <p class="eyebrow">Approfondimento</p>
+        <h2 id="cpuDetailTitle">Dettagli CPU Passmark</h2>
+        <div class="detail-tabs" role="tablist">
+          <button class="detail-tab" type="button" data-detail-tab="archive" role="tab" aria-selected="false">Elenco completo</button>
+          <button class="detail-tab active" type="button" data-detail-tab="single" role="tab" aria-selected="true">Single Core</button>
+          <button class="detail-tab" type="button" data-detail-tab="multi" role="tab" aria-selected="false">Multi Core</button>
+        </div>
+        <div class="detail-panels">
+          <div class="detail-panel" data-detail-panel="archive">
+            <div class="archive-controls">
+              <input id="cpuArchiveSearch" class="input" placeholder="Cerca processore (es. Ryzen 7, i9...)" />
+              <div id="cpuArchiveCount" class="muted"></div>
+              <button id="cpuArchiveMore" class="btn ghost small" type="button">Mostra altri</button>
+            </div>
+            <div id="cpuArchiveList" class="archive-table">Caricamento...</div>
+          </div>
+          <div class="detail-panel active" data-detail-panel="single">
+            <div id="cpuSingleContent" class="detail-content">Caricamento...</div>
+          </div>
+          <div class="detail-panel" data-detail-panel="multi">
+            <div id="cpuMultiContent" class="detail-content">Caricamento...</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="cardDetailOverlay" class="overlay hidden" role="dialog" aria-modal="true" aria-labelledby="cardDetailTitle">
+      <div class="modal card-detail-panel">
+        <button id="cardDetailClose" class="icon-btn" type="button" aria-label="Chiudi">×</button>
+        <h2 id="cardDetailTitle">Dettagli componente</h2>
+        <div id="cardDetailContent" class="card-detail-content"></div>
+      </div>
+    </div>
+
+    <div id="cookieBanner" class="cookie-banner hidden" role="dialog" aria-live="polite" aria-label="Preferenze cookie">
+      <div class="cookie-content">
+        <div>
+          <strong>Questo sito usa cookie</strong>
+          <p class="muted">Usiamo cookie tecnici per migliorare l’esperienza. Puoi accettare o rifiutare.</p>
+        </div>
+        <div class="cookie-actions">
+          <button id="cookieAccept" class="btn primary small" type="button">Accetta</button>
+          <button id="cookieReject" class="btn ghost small" type="button">Rifiuta</button>
+        </div>
+      </div>
+    </div>
+
+    <script src="data/cpus.js"></script>
+    <script src="data/gpus.js"></script>
+    <script src="app.js" defer></script>
+  </body>
+</html>

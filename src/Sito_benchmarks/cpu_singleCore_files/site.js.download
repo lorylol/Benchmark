@@ -1,0 +1,400 @@
+﻿
+function toggleNavMenuItem(menu_item) {
+    var menu = document.getElementById(menu_item);
+    if (menu.style.display == "none") {
+        menu.style.display = "block";
+    } else {
+        menu.style.display = "none";
+    }
+}
+
+function clearNavMenuItem(menu_item) {
+    var menu = document.getElementById(menu_item);
+    menu.style.display = "";
+}
+
+function toggleMenu() {
+
+    var myDiv = document.getElementById("mobile_menu");
+    var myMask = document.getElementById("mobile_menu_mask");
+    // console.log('toggleMenu', myDiv.style.display)
+    if (myDiv.classList.contains('-translate-x-full')) {
+        // myDiv.style.display = "block";
+        myMask.style.display = "block";
+
+        myDiv.classList.remove('-translate-x-full');
+        myDiv.classList.add('translate-x-0');
+
+        window.addEventListener("click", function (event) {
+            if (event.target == myDiv) {
+                myDiv.classList.remove('translate-x-0');
+                myDiv.classList.add('-translate-x-full');
+                myMask.style.display = "none";
+            }
+        });
+
+    } else {
+        myDiv.classList.remove('translate-x-0');
+        myDiv.classList.add('-translate-x-full');
+        // myDiv.style.display = "none";
+        myMask.style.display = "none";
+    }
+}
+
+function toggleCulture() {
+
+    var myDiv = document.getElementById("culture");
+    if (myDiv.style.display === "none") {
+        myDiv.style.display = "block";
+    } else {
+        myDiv.style.display = "none";
+    }
+}
+
+
+var hint = document.getElementById('hint');
+var old = null;
+function show(e, text) {
+    var t = e.target || e.srcElement;
+    if (old == t) {
+        hint.style.display = hint.style.display == 'block' ? 'none' : 'block';
+
+    } else {
+        old = t;
+        hint.style.display = 'block'
+
+        //hint.style.left = e.pageX + 'px';
+        hint.style.left = (e.pageX - e.offsetX) + 'px';
+        hint.style.top = (e.pageY + 20) + 'px';
+    }
+
+
+    hint.innerHTML = text
+    //console.log(t)
+    e.stopPropagation()
+}
+
+document.onclick = function (ev) {
+    //console.log('onclick')
+    hint.style.display = 'none'
+}
+
+var btnCode = document.getElementById('btnCode');
+if (btnCode) {
+    btnCode.onclick = function (e) {
+        var inputCode = document.getElementById('inputCode');
+        if (inputCode && inputCode.value) {
+
+            var expires = '';
+            var date = new Date();
+            date.setTime(date.getTime() + (100 * 24 * 60 * 60 * 1000));
+            expires = '; expires=' + date.toUTCString();
+
+            document.cookie = 'wx_token=' + encodeURIComponent(inputCode.value) + expires + '; path=/'
+            location.reload();
+        }
+
+    }
+}
+
+function initSearch(query) {
+
+    const query1 = document.querySelector("#" + query)
+
+    const awesomplete = new Awesomplete(query1, {
+        minChars: 1,
+        filter: () => { // We will provide a list that is already filtered ...
+            return true
+        },
+        sort: false,    // ... and sorted.
+        list: []
+    })
+    query1.addEventListener("awesomplete-selectcomplete", (e) => {
+        console.log(e.text.value)
+        var name = e.text.value.replace(/ /g, "-")
+        window.location.href = "/cpu/" + name
+    })
+
+    var is_loading = false
+
+    query1.addEventListener("input", (event) => {
+        if (is_loading) {
+            return
+        }
+        var inputText = event.target.value
+        //console.log(inputText)
+        if (!inputText) {
+            return
+        }
+        inputText = inputText.trim()
+        if (inputText.length < 1) {
+            return
+        }
+        // Process inputText as you want, e.g. make an API request.
+        var ajax = new XMLHttpRequest()
+        ajax.open("GET", `/item/query?name=${inputText}&type=0&size=10`, true)
+        ajax.onload = function () {
+            var json = JSON.parse(ajax.responseText)
+            if (json && json.code == 1) {
+                var list = json.data.map(function (i) { return i.name })
+                awesomplete.list = list
+                awesomplete.evaluate()
+            }
+            is_loading = false
+        }
+        is_loading = true
+
+        ajax.send()
+    })
+}
+
+
+function initCompare(type, query, mark, msg, onSelect) {
+    // console.log(type, query, mark, msg)
+    const query1 = document.querySelector("#" + query)
+    const mark1 = document.querySelector("#" + mark)
+    const message = document.querySelector("#" + msg)
+
+    const awesomplete = new Awesomplete(query1, {
+        minChars: 1,
+        maxItems: 15,
+        filter: () => { // We will provide a list that is already filtered ...
+            return true
+        },
+        sort: false,    // ... and sorted.
+        list: []
+    })
+    query1.addEventListener("awesomplete-selectcomplete", (e) => {
+        // console.log(e.text.value)
+        if (mark1) {
+            mark1.innerHTML = "✅"
+        }
+        if (onSelect) {
+            onSelect(e.text.value)
+        }
+    })
+
+    var is_loading = false
+    query1.addEventListener("click", (e) => {
+        // console.log('click')
+
+        if (awesomplete.ul.childNodes.length === 0) {
+            if (is_loading) {
+                return
+            }
+
+            var ajax = new XMLHttpRequest()
+            ajax.open("GET", `/item/querytop?type=${type}&size=10`, true)
+            ajax.onload = function () {
+                var json = JSON.parse(ajax.responseText)
+                if (json && json.code == 1) {
+                    var list = json.data.map(function (i) { return i })
+                    awesomplete.minChars = 0
+                    awesomplete.list = list
+                    awesomplete.evaluate()
+                }
+                is_loading = false
+            }
+            is_loading = true
+
+            ajax.send()
+        } else if (awesomplete.ul.hasAttribute('hidden')) {
+            awesomplete.open()
+        }
+        else {
+            awesomplete.close()
+        }
+    })
+
+    query1.addEventListener("input", (event) => {
+        if (is_loading) {
+            return
+        }
+        var inputText = event.target.value
+        //console.log(inputText)
+        if (!inputText) {
+            return
+        }
+        inputText = inputText.trim()
+        if (inputText.length < 1) {
+            return
+        }
+        // Process inputText as you want, e.g. make an API request.
+        var ajax = new XMLHttpRequest()
+        ajax.open("GET", `/item/query?name=${inputText}&type=${type}&size=10`, true)
+        ajax.onload = function () {
+            var json = JSON.parse(ajax.responseText)
+            if (json && json.code == 1) {
+                var list = json.data.map(function (i) { return i })
+                awesomplete.list = list
+                awesomplete.evaluate()
+            }
+            is_loading = false
+        }
+        is_loading = true
+        if (mark1) {
+            mark1.innerHTML = "❌"
+        }
+        if (message) {
+            message.innerHTML = ""
+        }
+        ajax.send()
+    })
+}
+
+function check(m1, m2, msg, error_msg) {
+    const mark1 = document.querySelector("#" + m1)
+    const mark2 = document.querySelector("#" + m2)
+    if (mark1.innerHTML != "✅" && mark2.innerHTML != "✅") {
+        const message = document.querySelector("#" + msg)
+        message.innerHTML = error_msg
+        return false;
+    }
+    return true;
+}
+
+
+
+function initNewsBtn(id) {
+
+    const btn = document.querySelector("#" + id)
+    const div = document.querySelector("#divNews")
+    var is_loading = false
+    btn.addEventListener("click", (event) => {
+        if (is_loading) {
+            return
+        }
+
+        let lang = btn.getAttribute('data-lang')
+        let page = +btn.getAttribute('data-page')
+
+        var ajax = new XMLHttpRequest()
+        ajax.open("GET", `/home/QueryNews?lang=${lang}&page=${page}`, true)
+        ajax.onload = function () {
+            var json = JSON.parse(ajax.responseText)
+            if (json && json.code == 1) {
+                let i = 0
+                let format = new Intl.DateTimeFormat(lang, {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric',
+                    weekday: 'long'
+                })
+                for (; i < json.data.length; i++) {
+                    let item = json.data[i]
+                    let url = item.name.toLowerCase().replace(' ', '-')
+                    let publish_date = format.format(new Date(item.publish_date))
+                    let html = `<div class="flex items-center py-2">
+                    <div class="text-slate-900 rounded bg-gray-100 px-2 py-1 text-xs text-center mr-2
+                min-w-[30px]">${page * 30 + i + 1}</div>
+                    <div class="flex-1 flex flex-col text-wrap	">
+                        <a class="" href="/${lang}/news/${url}">
+                          <span class="font-bold text-slate-900">${item.title}</span>
+                        </a>
+                        <div class="text-sm text-gray-400 ">${publish_date}</div> 
+                    </div>
+                    </div>`
+                    div.insertAdjacentHTML('beforeend', html)
+                }
+                btn.setAttribute('data-page', ++page)
+                if (i < 4) {
+                    btn.style.display = 'none'
+                }
+
+            }
+            is_loading = false
+        }
+        is_loading = true
+
+        ajax.send()
+    })
+}
+
+
+function initRankCompare(url) {
+    const checkboxes = document.querySelectorAll('input[type="checkbox"][data-cmp]');
+    checkboxes.forEach(checkbox => {
+        checkbox.addEventListener('click', () => {
+            const selectedCheckboxes = Array.from(checkboxes).filter(cb => cb.checked);
+            const selectedValues = selectedCheckboxes.map(cb => cb.value);
+            if (selectedValues.length == 2) {
+                const form = document.createElement('form');
+                form.method = 'POST';
+                form.action = url;
+
+                let input = document.createElement('input');
+                input.type = 'hidden';
+                input.name = 'name1';
+                input.value = selectedValues[0]
+                form.appendChild(input);
+
+                input = document.createElement('input');
+                input.type = 'hidden';
+                input.name = 'name2';
+                input.value = selectedValues[1]
+                form.appendChild(input);
+
+                document.body.appendChild(form);
+                form.submit();
+            }
+        });
+    });
+}
+
+
+
+const btn_mp = document.getElementById('btnMp')
+
+if (btn_mp) {
+    btn_mp.addEventListener('click', e => {
+        const div_mp = document.getElementById('divMp')
+        if (div_mp) {
+            div_mp.style.display = "block"
+        }
+    })
+}
+const btn_close_mp = document.getElementById('btnCloseMp')
+if (btn_close_mp) {
+    btn_close_mp.addEventListener('click', e => {
+        const div_mp = document.getElementById('divMp')
+        if (div_mp) {
+            div_mp.style.display = "none"
+        }
+    })
+}
+
+
+
+
+const compare_link2 = document.querySelector('[compare-link2]')
+const compare_input2 = document.querySelector('[compare-input2]')
+
+const compare_edit1 = document.querySelector('[compare-edit1]')
+if (compare_edit1) {
+    compare_edit1.addEventListener('click', e => {
+        const compare_link1 = document.querySelector('[compare-link1]')
+        const compare_input1 = document.querySelector('[compare-input1]')
+        if (compare_link1) {
+            compare_link1.style.display = "none"
+            compare_edit1.style.display = 'none'
+        }
+        if (compare_input1) {
+            compare_input1.style.display = "block"
+        }
+    })
+}
+
+const compare_edit2 = document.querySelector('[compare-edit2]')
+if (compare_edit2) {
+    compare_edit2.addEventListener('click', e => {
+        const compare_link = document.querySelector('[compare-link2]')
+        const compare_input = document.querySelector('[compare-input2]')
+        if (compare_link) {
+            compare_link.style.display = "none"
+            compare_edit2.style.display = 'none'
+        }
+        if (compare_input) {
+            compare_input.style.display = "block"
+        }
+    })
+}

@@ -1,0 +1,45 @@
+@font-face {
+     font-family: 'Ambit';
+     font-weight: 700;
+     src: url('Ambit-Bold.woff') format('woff');
+}
+@font-face {
+     font-family: 'Ambit';
+     font-weight: 400;
+     src: url('Ambit-Regular.woff') format('woff');
+}
+@font-face {
+     font-family: 'TuiType';
+     font-weight: 700;
+     src: url('Tuitype-Bold.woff') format('woff');
+}
+@font-face {
+     font-family: 'TuiType';
+     font-weight: 400;
+     src: url('Tuitype-Regular.woff') format('woff');
+}
+.ambit-bold{
+     font-family: 'Ambit', sans-serif;
+     font-weight:700;
+}
+.ambit-regular{
+     font-family: 'Ambit', sans-serif;
+     font-weight:400;
+}
+.ambit-regular b, .ambit-regular strong{
+     font-family: 'Ambit', sans-serif;
+     font-weight:700;
+}
+
+.tuitype-bold{
+     font-family: 'TuiType', sans-serif;
+     font-weight:700;
+}
+.tuitype-regular{
+     font-family: 'TuiType', sans-serif;
+     font-weight:400;
+}
+.tuitype-regular b, .tuitype-regular strong{
+     font-family: 'TuiType', sans-serif;
+     font-weight:700;
+}
