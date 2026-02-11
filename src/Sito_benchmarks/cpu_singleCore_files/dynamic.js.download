@@ -1,0 +1,273 @@
+var template = {
+  version: '1.0.0',
+  width: 300,
+  height: 250,
+  elements: {
+    logo: {
+      category: 'visual',
+      name: 'logo',
+      subcategory: 'Generic',
+      reportingDimension: 'logo',
+      width: 60,
+      height: 40,
+      image: { src: 'https://dyle7zu5kwqf5.cloudfront.net/621f4c11-b4fa-4244-b034-b54175e06e67/logo.png' }
+    },
+    logo2: {
+      category: 'visual',
+      name: 'logo2',
+      subcategory: 'Generic',
+      reportingDimension: 'logo2',
+      width: 60,
+      height: 40,
+      image: { src: 'https://dyle7zu5kwqf5.cloudfront.net/621f4c11-b4fa-4244-b034-b54175e06e67/logo2.png' }
+    },
+    logo3: {
+      category: 'visual',
+      name: 'logo3',
+      subcategory: 'Generic',
+      reportingDimension: 'logo3',
+      width: 25,
+      height: 25,
+      image: { src: 'https://dyle7zu5kwqf5.cloudfront.net/621f4c11-b4fa-4244-b034-b54175e06e67/sublogo2.png' }
+    },
+    ctaText: {
+      category: 'visual',
+      name: 'ctaText',
+      subcategory: 'Generic',
+      reportingDimension: 'ctaText',
+      text: { value: 'Fugiat nulla par' },
+      style: { content: 'normal' }
+    },
+    subLogo: {
+      category: 'visual',
+      name: 'subLogo',
+      subcategory: 'Generic',
+      width: 109,
+      height: 20,
+      image: { src: 'https://dyle7zu5kwqf5.cloudfront.net/621f4c11-b4fa-4244-b034-b54175e06e67/sublogo.png' }
+    },
+    trigger: {
+      category: 'media',
+      name: 'trigger',
+      subcategory: 'Generic',
+      reportingDimension: 'trigger',
+      text: { value: 'FRAME 1 AND 2 WITH CTA' },
+      enum: [
+        {
+          label: 'FRAME 1 AND 2 WITH CTA',
+          value: 'FRAME 1 AND 2 WITH CTA'
+        },
+        {
+          label: 'FRAME 1 AND 2 NO CTA',
+          value: 'FRAME 1 AND 2 NO CTA'
+        }
+      ]
+    },
+    cssStyle: {
+      category: 'variables',
+      name: 'CSS Style',
+      subcategory: 'Generic',
+      reportingDimension: 'cssAttrib',
+      text: { value: '/* CSS Styling */' }
+    },
+    fontName: {
+      category: 'visual',
+      name: 'fontName',
+      subcategory: 'Font',
+      text: { value: 'TUI Type' },
+      enum: [
+        {
+          label: 'Ambit',
+          value: 'Ambit'
+        },
+        {
+          label: 'TUI Type',
+          value: 'TUI Type'
+        }
+      ]
+    },
+    baseImage: {
+      category: 'visual',
+      name: 'baseImage',
+      subcategory: 'Generic',
+      reportingDimension: 'baseImage',
+      width: 300,
+      height: 250,
+      image: { src: 'https://dyle7zu5kwqf5.cloudfront.net/621f4c11-b4fa-4244-b034-b54175e06e67/background.jpg' }
+    },
+    ctaColor1: {
+      category: 'visual',
+      name: 'ctaColor1',
+      subcategory: 'Generic',
+      reportingDimension: 'ctaColor1',
+      text: { value: '#EF0000' }
+    },
+    baseImage2: {
+      category: 'visual',
+      name: 'baseImage2',
+      subcategory: 'Generic',
+      reportingDimension: 'baseImage2',
+      width: 56,
+      height: 10,
+      image: { src: 'https://dyle7zu5kwqf5.cloudfront.net/621f4c11-b4fa-4244-b034-b54175e06e67/terms.png' }
+    },
+    baseImage3: {
+      category: 'visual',
+      name: 'baseImage3',
+      subcategory: 'Generic',
+      reportingDimension: 'baseImage3',
+      width: 300,
+      height: 250,
+      image: { src: 'https://dyle7zu5kwqf5.cloudfront.net/621f4c11-b4fa-4244-b034-b54175e06e67/vector.png' }
+    },
+    baseImage4: {
+      category: 'visual',
+      name: 'baseImage4',
+      subcategory: 'Generic',
+      reportingDimension: 'baseImage4',
+      width: 300,
+      height: 250,
+      image: { src: 'https://dyle7zu5kwqf5.cloudfront.net/621f4c11-b4fa-4244-b034-b54175e06e67/gradient.png' }
+    },
+    baseImage5: {
+      category: 'visual',
+      name: 'baseImage5',
+      subcategory: 'Generic',
+      reportingDimension: 'baseImage5',
+      width: 300,
+      height: 250,
+      image: { src: 'https://dyle7zu5kwqf5.cloudfront.net/621f4c11-b4fa-4244-b034-b54175e06e67/skyblue.png' }
+    },
+    baseImage6: {
+      category: 'visual',
+      name: 'baseImage6',
+      subcategory: 'Generic',
+      reportingDimension: 'baseImage6',
+      width: 300,
+      height: 250,
+      image: { src: 'https://dyle7zu5kwqf5.cloudfront.net/621f4c11-b4fa-4244-b034-b54175e06e67/wave.png' }
+    },
+    fontColor1: {
+      category: 'visual',
+      name: 'fontColor1',
+      subcategory: 'Font',
+      reportingDimension: 'fontColor1',
+      text: { value: '#092A5E' }
+    },
+    fontColor2: {
+      category: 'visual',
+      name: 'fontColor2',
+      subcategory: 'Font',
+      reportingDimension: 'fontColor2',
+      text: { value: '#092A5E' }
+    },
+    frame3Image: {
+      category: 'content',
+      name: 'frame3Image',
+      subcategory: 'Frame 3',
+      reportingDimension: 'frame3Image',
+      width: 31,
+      height: 31,
+      image: { src: 'https://dyle7zu5kwqf5.cloudfront.net/621f4c11-b4fa-4244-b034-b54175e06e67/icon1.png' }
+    },
+    frame4Image: {
+      category: 'content',
+      name: 'frame4Image',
+      subcategory: 'Frame 4',
+      reportingDimension: 'frame4Image',
+      width: 113,
+      height: 27,
+      image: { src: 'https://dyle7zu5kwqf5.cloudfront.net/621f4c11-b4fa-4244-b034-b54175e06e67/roundel.png' }
+    },
+    landingPage: {
+      category: 'media',
+      name: 'landingPage',
+      reportingDimension: 'landingPage',
+      url: { value: 'https://www.tui.co.uk/' }
+    },
+    frame3Image2: {
+      category: 'content',
+      name: 'frame3Image2',
+      subcategory: 'Frame 3',
+      reportingDimension: 'frame3Image2',
+      width: 31,
+      height: 31,
+      image: { src: 'https://dyle7zu5kwqf5.cloudfront.net/621f4c11-b4fa-4244-b034-b54175e06e67/icon2.png' }
+    },
+    frame3Image3: {
+      category: 'content',
+      name: 'frame3Image3',
+      subcategory: 'Frame 3',
+      reportingDimension: 'frame3Image3',
+      width: 31,
+      height: 31,
+      image: { src: 'https://dyle7zu5kwqf5.cloudfront.net/621f4c11-b4fa-4244-b034-b54175e06e67/icon3.png' }
+    },
+    locationName: {
+      category: 'variables',
+      name: 'locationName',
+      text: { value: ' ' }
+    },
+    customVariable: {
+      category: 'variables',
+      name: 'customVariable',
+      reportingDimension: 'customVariable',
+      text: { value: '1' }
+    },
+    frame1Headline: {
+      category: 'content',
+      name: 'frame1Headline',
+      subcategory: 'Frame 1',
+      reportingDimension: 'frame1Headline',
+      text: { value: 'Ut ēnim ad minim vęniäm, qûis nostrud exercitatiœn ullamcola' },
+      style: { content: 'normal' }
+    },
+    frame2Headline: {
+      category: 'content',
+      name: 'frame2Headline',
+      subcategory: 'Frame 2',
+      reportingDimension: 'frame2Headline',
+      text: { value: 'Nisi ut aliqüip ex ea commødo consequat, duįs aute irure do' },
+      style: { content: 'normal' }
+    },
+    frame3Headline: {
+      category: 'content',
+      name: 'frame3Headline',
+      subcategory: 'Frame 3',
+      reportingDimension: 'frame3Headline',
+      text: { value: 'MASSÅ<br>TINCĪDUNT<br><b>NÛNC</b>' },
+      style: { content: 'normal' }
+    },
+    frame4Headline: {
+      category: 'content',
+      name: 'frame4Headline',
+      subcategory: 'Frame 4',
+      reportingDimension: 'frame4Headline',
+      text: { value: 'TÊMPOR<br>INIDĮDUNT<br><div style=\'color:white;\'>UT LABŌRE ĘT DOLORE ÁSE</div>' },
+      style: { content: 'normal' }
+    },
+    customVariable2: {
+      category: 'variables',
+      name: 'customVariable2',
+      reportingDimension: 'customVariable2',
+      text: { value: '0' }
+    },
+    frame3Headline2: {
+      category: 'content',
+      name: 'frame3Headline2',
+      subcategory: 'Frame 3',
+      reportingDimension: 'frame3Headline2',
+      text: { value: 'PÜLVINAR<br><b>SÅPIEN ÊTLI</b>' },
+      style: { content: 'normal' }
+    },
+    frame3Headline3: {
+      category: 'content',
+      name: 'frame3Headline3',
+      subcategory: 'Frame 3',
+      reportingDimension: 'frame3Headline3',
+      text: { value: 'ÜLLAMCORPĒR<br><b>MÀLESUÅD</b>' },
+      style: { content: 'normal' }
+    }
+  }
+};
+var runtime = new TemplateRuntime(template).start();

@@ -1,0 +1,28 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "serve",
+      "type": "shell",
+      "command": "python",
+      "args": ["-m", "http.server", "8080", "--bind", "127.0.0.1"],
+      "isBackground": true,
+      "problemMatcher": {
+        "owner": "custom",
+        "pattern": {
+          "regexp": "^(.*)$"
+        },
+        "background": {
+          "activeOnStart": true,
+          "beginsPattern": "^Serving HTTP on",
+          "endsPattern": "(\\bServer stopped\\b|\\bKeyboardInterrupt\\b)"
+        }
+      },
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated",
+        "clear": true
+      }
+    }
+  ]
+}
